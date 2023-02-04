@@ -1,5 +1,7 @@
 <script lang="ts">
+    import "../styles/Login.css";
     import { currentUser, pb } from "./pocketbase";
+    import Servers from "./Servers.svelte";
 
     let username: string;
     let password: string;
@@ -19,27 +21,23 @@
         await login();
     }
 
-    function signout() {
+    export function signout() {
         pb.authStore.clear();
     }
 </script>
 
-{#if $currentUser} 
-    <p> Hello {$currentUser.username}</p>
-{:else}
-    <form on:submit|preventDefault>
-        <input
-            placeholder="username"
-            type="text"
-            bind:value={username}
-        />
-        <input
-            placeholder="password"
-            type="password"
-            bind:value={password}
-        />
+<form on:submit|preventDefault>
+    <input
+        placeholder="username"
+        type="text"
+        bind:value={username}
+    />
+    <input
+        placeholder="password"
+        type="password"
+        bind:value={password}
+    />
 
-        <button on:click={login}> Login </button>
-        <button on:click={signup}> Register </button>
-    </form>
-{/if}
+    <button on:click={login}> Login </button>
+    <button on:click={signup}> Register </button>
+</form>
