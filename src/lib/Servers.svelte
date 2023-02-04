@@ -29,10 +29,4 @@
     {/each}
 {/await}
 
-{messages}
-    {#each messages as message}
-        <div class="{message.message}"> {message.message} </div>
-    {/each}
-
-
 

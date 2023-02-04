@@ -10,8 +10,6 @@
     }
 </script>
 
-<h1> Test </h1>
-
 {#await getServerMessage(server) then messages}
     {#each messages as message}
         <div class="{message.message}"> {message.message} </div>
