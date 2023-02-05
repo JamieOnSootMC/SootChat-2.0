@@ -1,18 +1,17 @@
 <script lang="ts">
+    import { writable } from "svelte/store";
     import "../styles/Login.css";
     
     import { login } from "./PocketbaseHandler/UserHandler/Login";
     import { register } from "./PocketbaseHandler/UserHandler/Register";
-
+    
+    import { registering } from "./store";
+    
     let email: string;
     let password: string;
 
-    async function signup() {
-        await register({
-            email,
-            password,
-            passwordConfirm: password,
-        });
+    function signup() {
+        registering.set(true);
     }
 
     async function handleLoginClick() {
@@ -22,11 +21,13 @@
 
 <form on:submit|preventDefault>
     <input
+        name="email"
         placeholder="Username (Email)"
         type="email"
         bind:value={email}
     />
     <input
+        name="password"
         placeholder="Password"
         type="password"
         bind:value={password}
