@@ -1,6 +1,6 @@
 import { pb } from '../pocketbase';
 import { login } from './Login';
-import { registering } from '../../store';
+import { registering } from '../../cache/store';
 
 export async function register(data: any) {
     await pb.collection('users').create(data);

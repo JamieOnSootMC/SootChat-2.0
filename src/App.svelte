@@ -5,7 +5,7 @@
     import ServerChat from "./lib/ServerChat.svelte";
 
     import { currentUser, pb } from "./lib/PocketbaseHandler/pocketbase";
-    import { registering } from "./lib/store";
+    import { registering } from "./lib/cache/store";
 </script>
 
 

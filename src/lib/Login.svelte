@@ -5,7 +5,7 @@
     import { login } from "./PocketbaseHandler/UserHandler/Login";
     import { register } from "./PocketbaseHandler/UserHandler/Register";
     
-    import { registering } from "./store";
+    import { registering } from "./cache/store";
     
     let email: string;
     let password: string;
