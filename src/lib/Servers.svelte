@@ -1,5 +1,6 @@
 <script lang="ts">
     import { pb } from "./PocketbaseHandler/pocketbase";
+    import { chatViewing, chatViewed } from "./cache/store";
     import "../styles/Servers.css";
 
     let messages;
@@ -12,12 +13,17 @@
         const servers = await pb.collection('servers').getFullList();
         return servers;
     }
+
+    function handleClick(serverName: string) {
+        chatViewing.set(true);
+        chatViewed.set(serverName);
+    }
 </script>
 
 <div class="servers">
     {#await gatherServers() then servers}
         {#each servers as server}
-            <button> {server.serverName}</button>
+            <button on:click={() => handleClick(server.serverName)}> {server.serverName}</button>
         {/each}
     {/await}
 </div>

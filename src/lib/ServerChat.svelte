@@ -1,18 +1,26 @@
 <script lang="ts">
     import { pb, currentUser } from "./PocketbaseHandler/pocketbase";
     import serverName from "./Servers.svelte";
+    import { chatViewed, chatViewing } from "./cache/store";
 
-    let server: string = String.raw`${serverName}`;
-    export function getServerMessage(server: string) {
-        return pb.collection('messages').getFullList(200, {
-            filter: `server_name = "${server}"`
+    async function getServerMessage() {
+        let lookupServer: string;
+        chatViewed.subscribe((value) => {
+            lookupServer = value;
         });
+        const data = await pb.collection('messages').getFullList(200, {
+            filter: `server_name = '${lookupServer}'`,
+        });
+        
+        return data;
     }
 </script>
 
 <h1> test </h1>
-{#await getServerMessage(server) then messages}
+{#await getServerMessage() then messages}
     {#each messages as message}
-        <div class="{message.message}"> {message.message} </div>
+        <p> {message.message_content} </p>
     {/each}
 {/await}
+
+<button on:click={() => chatViewing.set(false)}> Back </button>
