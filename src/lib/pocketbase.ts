@@ -7,6 +7,4 @@ export const currentUser = writable(pb.authStore.model);
 pb.authStore.onChange((auth) => {
     console.log("authStore changed", auth);
     currentUser.set(pb.authStore.model);
-    // Refresh page to update the UI
-    window.location.reload();
 });

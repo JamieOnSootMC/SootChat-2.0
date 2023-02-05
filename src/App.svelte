@@ -3,14 +3,13 @@
     import { currentUser, pb } from "./lib/pocketbase";
     import Servers from "./lib/Servers.svelte";
     import ServerChat from "./lib/ServerChat.svelte";
-    import chatSelected from "./lib/Servers.svelte";
 </script>
 
 
 
 <h1> SootChat </h1>
 
-{#if currentUser}
+{#if $currentUser}
     <Servers />
 {:else}
     <Login />

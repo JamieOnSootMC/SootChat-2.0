@@ -1,23 +1,22 @@
 <script lang="ts">
     import "../styles/Login.css";
     import { currentUser, pb } from "./pocketbase";
-    import Servers from "./Servers.svelte";
 
-    let username: string;
+    let email: string;
     let password: string;
 
     async function login() {
-        await pb.collection('moderators').authWithPassword(username, password);
+        await pb.collection('users').authWithPassword(email, password);
     }
 
     async function signup() {
         const data = {
-            username,
+            email,
             password,
             passwordConfirm: password,
         }
 
-        const createUser = await pb.collection('moderators').create(data);
+        const createUser = await pb.collection('users').create(data);
         await login();
     }
 
@@ -28,12 +27,12 @@
 
 <form on:submit|preventDefault>
     <input
-        placeholder="username"
-        type="text"
-        bind:value={username}
+        placeholder="Username (Email)"
+        type="email"
+        bind:value={email}
     />
     <input
-        placeholder="password"
+        placeholder="Password"
         type="password"
         bind:value={password}
     />

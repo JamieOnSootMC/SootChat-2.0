@@ -2,13 +2,11 @@
     import { pb } from "./pocketbase";
     import "../styles/Servers.css";
     import getServerMessage from "./ServerChat.svelte";
+    import { writable } from "svelte/store";
 
-    let chatSelected: boolean = false;    
+    export const chatSelected = writable(false);
+
     let messages;
-
-    export function getChatSelected(): boolean {
-        return chatSelected;
-    }
 
     function signout() {
         pb.authStore.clear();
@@ -22,7 +20,7 @@
     function handleClick(serverName) {
      // When method is called, get all messages for the server and display them
         messages = new getServerMessage(serverName);
-        chatSelected = true;
+        chatSelected.set(true);
     }
 </script>
 
