@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { pb } from "./pocketbase";
+    import { pb } from "./PocketbaseHandler/pocketbase";
     import "../styles/Servers.css";
     import getServerMessage from "./ServerChat.svelte";
     import { writable } from "svelte/store";
 
-    export const chatSelected = writable(false);
+    export const selected = writable(false);
 
     let messages;
 
@@ -20,7 +20,7 @@
     function handleClick(serverName) {
      // When method is called, get all messages for the server and display them
         messages = new getServerMessage(serverName);
-        chatSelected.set(true);
+        selected.set(true);
     }
 </script>
 

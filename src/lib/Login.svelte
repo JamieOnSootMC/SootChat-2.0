@@ -1,6 +1,6 @@
 <script lang="ts">
     import "../styles/Login.css";
-    import { currentUser, pb } from "./pocketbase";
+    import { currentUser, pb } from "./PocketbaseHandler/pocketbase";
 
     let email: string;
     let password: string;

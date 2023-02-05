@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { pb, currentUser } from "./pocketbase";
+    import { pb, currentUser } from "./PocketbaseHandler/pocketbase";
     import serverName from "./Servers.svelte";
 
     let server: string = String.raw`${serverName}`;
