@@ -1,10 +1,6 @@
 <script lang="ts">
     import { pb } from "./PocketbaseHandler/pocketbase";
     import "../styles/Servers.css";
-    import getServerMessage from "./ServerChat.svelte";
-    import { writable } from "svelte/store";
-
-    export const selected = writable(false);
 
     let messages;
 
@@ -16,21 +12,15 @@
         const servers = await pb.collection('servers').getFullList();
         return servers;
     }
-
-    function handleClick(serverName) {
-     // When method is called, get all messages for the server and display them
-        messages = new getServerMessage(serverName);
-        selected.set(true);
-    }
 </script>
 
-{#await gatherServers() then servers}
-    {#each servers as server}
-        <div class="{server.serverName}">
-            <button> {server.serverName} </button>
-        </div>
-    {/each}
-{/await}
+<div class="servers">
+    {#await gatherServers() then servers}
+        {#each servers as server}
+            <button> {server.serverName}</button>
+        {/each}
+    {/await}
+</div>
 
 <button on:click={signout}> Sign Out </button>
 

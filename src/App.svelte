@@ -5,7 +5,7 @@
     import ServerChat from "./lib/ServerChat.svelte";
 
     import { currentUser, pb } from "./lib/PocketbaseHandler/pocketbase";
-    import { registering } from "./lib/cache/store";
+    import { chatViewing, registering } from "./lib/cache/store";
 </script>
 
 
@@ -13,7 +13,11 @@
 <h1> SootChat </h1>
 
 {#if $currentUser}
-    <Servers />
+    {#if $chatViewing}
+        <ServerChat />
+    {:else}
+        <Servers />
+    {/if}
 {:else}
     {#if $registering}
         <Register />
