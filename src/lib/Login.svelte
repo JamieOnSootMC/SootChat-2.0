@@ -1,27 +1,22 @@
 <script lang="ts">
     import "../styles/Login.css";
-    import { currentUser, pb } from "./PocketbaseHandler/pocketbase";
+    
+    import { login } from "./PocketbaseHandler/UserHandler/Login";
+    import { register } from "./PocketbaseHandler/UserHandler/Register";
 
     let email: string;
     let password: string;
 
-    async function login() {
-        await pb.collection('users').authWithPassword(email, password);
-    }
-
     async function signup() {
-        const data = {
+        await register({
             email,
             password,
             passwordConfirm: password,
-        }
-
-        const createUser = await pb.collection('users').create(data);
-        await login();
+        });
     }
 
-    export function signout() {
-        pb.authStore.clear();
+    async function handleLoginClick() {
+        await login(email, password);
     }
 </script>
 
@@ -37,6 +32,6 @@
         bind:value={password}
     />
 
-    <button on:click={login}> Login </button>
+    <button on:click={handleLoginClick}> Login </button>
     <button on:click={signup}> Register </button>
 </form>
