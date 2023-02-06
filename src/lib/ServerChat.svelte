@@ -16,7 +16,6 @@
     }
 </script>
 
-<h1> test </h1>
 {#await getServerMessage() then messages}
     {#each messages as message}
         <p> {message.message_content} </p>
