@@ -3,8 +3,6 @@
     import { chatViewing, chatViewed } from "./cache/store";
     import "../styles/Servers.css";
 
-    let messages;
-
     function signout() {
         pb.authStore.clear();
     }

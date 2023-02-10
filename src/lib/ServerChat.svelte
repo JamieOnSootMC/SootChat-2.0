@@ -1,6 +1,5 @@
 <script lang="ts">
-    import { pb, currentUser } from "./PocketbaseHandler/pocketbase";
-    import serverName from "./Servers.svelte";
+    import { pb } from "./PocketbaseHandler/pocketbase";
     import { chatViewed, chatViewing } from "./cache/store";
 
     async function getServerMessage() {

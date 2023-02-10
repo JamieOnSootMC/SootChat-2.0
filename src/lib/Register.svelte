@@ -1,8 +1,5 @@
 <script lang="ts">
-    import { currentUser } from "./PocketbaseHandler/pocketbase";
     import { register } from "./PocketbaseHandler/UserHandler/Register";
-    import registering from "./Login.svelte";
-    import { writable } from "svelte/store";
 
     let email: string;
     let password: string;

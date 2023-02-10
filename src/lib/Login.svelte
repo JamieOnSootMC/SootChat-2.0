@@ -1,10 +1,7 @@
 <script lang="ts">
-    import { writable } from "svelte/store";
     import "../styles/Login.css";
     
-    import { login } from "./PocketbaseHandler/UserHandler/Login";
-    import { register } from "./PocketbaseHandler/UserHandler/Register";
-    
+    import { login } from "./PocketbaseHandler/UserHandler/Login";    
     import { registering } from "./cache/store";
     
     let email: string;
