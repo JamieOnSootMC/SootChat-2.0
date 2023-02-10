@@ -20,7 +20,12 @@
     {/if}
 {:else}
     {#if $registering}
-        <Register />
+        {#if $error == "password_not_match"}
+            <p> Passwords do not match </p>
+            <Register />
+        {:else}
+            <Register />
+        {/if}
     {:else}
         {#if $error == "invalid_email"}
             <p> Invalid Email! </p>

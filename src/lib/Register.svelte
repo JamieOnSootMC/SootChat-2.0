@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { error } from "./cache/store";
     import { register } from "./PocketbaseHandler/UserHandler/Register";
 
     let email: string;
@@ -7,7 +8,7 @@
 
     function handleRegisterClick() {
         if(password !== passwordConfirm) {
-            alert("Passwords do not match!");
+            error.set("password_not_match");
             return;
         }
         
