@@ -5,7 +5,7 @@
     import ServerChat from "./lib/ServerChat.svelte";
 
     import { currentUser } from "./lib/PocketbaseHandler/pocketbase";
-    import { chatViewing, registering } from "./lib/cache/store";
+    import { chatViewing, error, registering } from "./lib/cache/store";
 </script>
 
 
@@ -22,6 +22,14 @@
     {#if $registering}
         <Register />
     {:else}
-        <Login />
+        {#if $error == "invalid_email"}
+            <p> Invalid Email! </p>
+            <Login />
+        {:else if $error == "invalid_password"}
+            <p> Incorrect Password </p>
+            <Login />
+        {:else}
+            <Login />
+        {/if}
     {/if}
 {/if}
